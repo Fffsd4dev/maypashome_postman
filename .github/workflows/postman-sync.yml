@@ -1,42 +1,12 @@
-name: Sync Postman Collections
+name: Test Workflow
 
 on:
   workflow_dispatch:
 
-  schedule:
-    - cron: '*/15 * * * *'
-
 jobs:
-  sync:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Create Folders
-        run: |
-          mkdir -p postman/collections
-          mkdir -p postman/environments
-
-      - name: Download Collection
-        run: |
-          curl --location \
-          --header "X-Api-Key: ${{ secrets.POSTMAN_DATA}}" \
-          "https://api.getpostman.com/collections/8847438-2d334d07-cf1c-4727-bbb4-c7e0cac7f20f" \
-          -o postman/collections/fssd-api.json
-
-      - name: Commit Changes
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-
-          git add .
-
-          if git diff --cached --quiet; then
-            echo "No changes detected"
-            exit 0
-          fi
-
-          git commit -m "Auto-sync Postman collection"
-          git push
+      - name: Hello
+        run: echo "Hello World"
