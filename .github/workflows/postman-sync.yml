@@ -22,7 +22,7 @@ jobs:
       - name: Download Collection
         run: |
           curl --location \
-          --header "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
+          --header "X-Api-Key: ${{ secrets.POSTMAN_DATA}}" \
           "https://api.getpostman.com/collections/8847438-2d334d07-cf1c-4727-bbb4-c7e0cac7f20f" \
           -o postman/collections/fssd-api.json
 
